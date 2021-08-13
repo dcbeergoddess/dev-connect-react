@@ -1,4 +1,5 @@
 import axios from 'axios';
+// eslint-disable-next-line
 import { setAlert } from './alert';
 import { GET_PROFILE, PROFILE_ERROR } from './types';
 
