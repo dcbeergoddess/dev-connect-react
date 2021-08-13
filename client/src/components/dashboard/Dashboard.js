@@ -6,7 +6,7 @@ import { getCurrentProfile } from '../../actions/profile';
 
 const Dashboard = ({
   getCurrentProfile,
-  auth,
+  auth: { user },
   profile: { profile, loading }
 }) => {
   // eslint-disable-next-line
@@ -14,7 +14,19 @@ const Dashboard = ({
     getCurrentProfile();
   }, [getCurrentProfile]);
 
-  return loading && profile === null ? <Spinner /> : <>test</>;
+  return loading && profile === null ? (
+    <Spinner />
+  ) : (
+    <>
+      <h1 className='large text-primary'>Dashboard</h1>
+      <p className='lead'>
+        {/* check to see if user is there with double ampersand --> need to destructure user from auth above */}
+        <i className='fas fa-user'></i> Welcome {user && user.name}
+      </p>
+      {/* Show something different if the profile isn't there */}
+      {profile !== null ? <>has</> : <>has not</>}
+    </>
+  );
 };
 
 Dashboard.propTypes = {
