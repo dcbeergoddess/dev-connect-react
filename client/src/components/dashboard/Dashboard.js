@@ -1,15 +1,20 @@
 import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import Spinner from '../layout/Spinner';
 import { getCurrentProfile } from '../../actions/profile';
 
-const Dashboard = ({ getCurrentProfile, auth, profile }) => {
+const Dashboard = ({
+  getCurrentProfile,
+  auth,
+  profile: { profile, loading }
+}) => {
   // eslint-disable-next-line
   useEffect(() => {
     getCurrentProfile();
   }, [getCurrentProfile]);
 
-  return <div>Dashboard</div>;
+  return loading && profile === null ? <Spinner /> : <>test</>;
 };
 
 Dashboard.propTypes = {
