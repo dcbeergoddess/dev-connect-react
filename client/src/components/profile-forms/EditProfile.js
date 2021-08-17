@@ -53,19 +53,27 @@ const EditProfile = ({
 
   // NEW VERSION --> set up initial state for this
   useEffect(() => {
+    //if there is no profile loaded get current profile
     if (!profile) getCurrentProfile();
+    // if no loading and there is a profile
     if (!loading && profile) {
+      //spread teh initial state data to the profileData
       const profileData = { ...initialState };
       for (const key in profile) {
+        // for existing keys add the data to the profileData
         if (key in profileData) profileData[key] = profile[key];
       }
+      // for existing social keys add the data to the profile data
       for (const key in profile.social) {
         if (key in profileData) profileData[key] = profile.social[key];
       }
+      //for existing skills add teh data to the profileData
       if (Array.isArray(profileData.skills))
         profileData.skills = profileData.skills.join(', ');
+      // fill the form data
       setFormData(profileData);
     }
+    // dependencies array, when they change the useEffect runs
   }, [loading, getCurrentProfile, profile]);
 
   const {
